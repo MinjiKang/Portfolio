@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper 
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace = "PortfolioDao">
+
+	<select id = "selectPersonal" resultType="personal_info">
+		SELECT * FROM PERSONALINFO WHERE my_name=#{my_name}
+	</select>
+	
+	<select id = "selectObjective" resultType = "objective">
+		SELECT * FROM OBJECTIVE WHERE person_no=#{person_no}
+	</select>
+	
+	<select id = "selectExperiences" resultType = "experiences">
+		SELECT * FROM EXPERIENCES WHERE person_no=#{person_no}
+	</select>
+	
+	<select id = "selectEducation" resultType = "education">
+		SELECT * FROM EDUCATION WHERE person_no=#{person_no}
+	</select>
+	
+	<select id = "selectActivities" resultType = "activities">
+		SELECT * FROM ACTIVITIES WHERE person_no=#{person_no}
+	</select>
+	
+	<select id = "selectSkills" resultType = "skills">
+		SELECT * FROM SKILLS WHERE person_no=#{person_no}
+	</select>
+	
+	<select id = "selectWorks" resultType = "works">
+		SELECT * FROM WORKS WHERE person_no=#{person_no}
+	</select>
+	
+	<insert id="InsertPersonal" parameterType="personal_info">
+		<selectKey resultType="integer" keyProperty="person_no" order="BEFORE">
+		    SELECT personalinfo_SEQ_NO.nextVal FROM DUAL
+		</selectKey>
+		INSERT INTO PERSONALINFO VALUES (#{person_no},#{my_name},#{my_phone},#{my_address},#{my_email})
+	</insert>
+	
+	<insert id="InsertObjective" parameterType="objective">
+		INSERT INTO OBJECTIVE VALUES (#{person_no},#{obj_content},objective_SEQ_NO.nextVal)
+	</insert>
+	
+	<insert id="InsertExperiences" parameterType="experiences">
+		INSERT INTO EXPERIENCES VALUES (#{person_no},#{exp_place},#{exp_date},#{exp_content},experiences_SEQ_NO.nextVal)
+	</insert>
+	
+	<insert id="InsertEducation" parameterType="education">
+		INSERT INTO EDUCATION VALUES (#{person_no},#{act_content},education_SEQ_NO.nextVal)
+	</insert>
+	
+	<insert id="InsertActivities" parameterType="activities">
+	 	INSERT INTO ACTIVITIES VALUES (#{person_no},#{edu_school},#{edu_city},#{edu_major},#{edu_date},activities_SEQ_NO.nextVal)
+	</insert>
+
+	<insert id="InsertSkills" parameterType="skills">
+		INSERT INTO SKILLS VALUES (#{person_no},#{skill_language},#{skill_tool},#{skill_software},skills_SEQ_NO.nextVal)
+	</insert>
+
+	<insert id="InsertWorks" parameterType="works">
+		INSERT INTO WORKS VALUES (#{person_no},#{work_content},#{work_date},works_SEQ_NO.nextVal)
+	</insert>
+	
+	<!-- <insert id="InsertExperiences" parameterType="experiences">
+		<selectKey resultType="integer" keyProperty="exp_no" order="BEFORE">
+		    SELECT experiences_SEQ_NO.nextVal FROM DUAL
+		</selectKey>
+		INSERT INTO EXPERIENCES VALUES (#{person_no},#{exp_place},#{exp_date},#{exp_no})
+	</insert>
+	
+	<insert id="InsertExperiencesContent" parameterType="experiencesContent">
+		INSERT INTO EXPERIENCESCONTENT VALUES (#{exp_no},#{person_no},#{exp_content},experiences_content_SEQ_NO.nextVal)
+	</insert> -->
+	
+</mapper>

@@ -1,0 +1,104 @@
+CREATE sequence personalinfo_SEQ_NO 
+START WITH 1 
+INCREMENT BY 1;
+
+CREATE sequence objective_SEQ_NO 
+START WITH 1 
+INCREMENT BY 1;
+
+CREATE sequence experiences_SEQ_NO 
+START WITH 1 
+INCREMENT BY 1;
+
+CREATE sequence education_SEQ_NO 
+START WITH 1 
+INCREMENT BY 1;
+
+CREATE sequence activities_SEQ_NO 
+START WITH 1 
+INCREMENT BY 1;
+
+CREATE sequence skills_SEQ_NO 
+START WITH 1 
+INCREMENT BY 1;
+
+CREATE sequence works_SEQ_NO 
+START WITH 1 
+INCREMENT BY 1;
+
+CREATE TABLE PERSONALINFO(
+    person_no NUMBER PRIMARY KEY,
+    my_name VARCHAR(10),
+    my_phone VARCHAR(20),
+    my_address VARCHAR(100),
+    my_email VARCHAR(20)
+);
+
+CREATE TABLE OBJECTIVE(
+    obj_no NUMBER PRIMARY KEY,
+    person_no NUMBER,
+    obj_content VARCHAR(200)
+);
+
+CREATE TABLE EXPERIENCES(
+    exp_no NUMBER PRIMARY KEY,
+    person_no NUMBER,
+    exp_place   VARCHAR(100),
+    exp_date VARCHAR(50),
+    exp_content VARCHAR(500)
+);
+
+CREATE TABLE EDUCATION(
+    edu_no NUMBER PRIMARY KEY,
+    person_no NUMBER,
+    edu_school   VARCHAR(50),
+    edu_city     VARCHAR(100),
+    edu_major    VARCHAR(100), 
+    edu_date VARCHAR(50)
+);
+
+CREATE TABLE ACTIVITIES(
+    act_no NUMBER PRIMARY KEY,
+    person_no NUMBER,
+    act_content VARCHAR(200)
+);
+
+CREATE TABLE SKILLS(
+    skill_no NUMBER PRIMARY KEY,
+    person_no NUMBER,
+    skill_language VARCHAR(200),
+    skill_tool VARCHAR(200),
+    skill_software VARCHAR(200)
+);
+
+CREATE TABLE WORKS(
+    work_no NUMBER PRIMARY KEY,
+    person_no NUMBER,
+    work_date VARCHAR(200),
+    work_content VARCHAR(200)
+);
+
+
+ALTER TABLE OBJECTIVE
+ADD CONSTRAINT FK_OBJ FOREIGN KEY(person_no)
+REFERENCES PERSONALINFO(person_no);
+
+ALTER TABLE EXPERIENCES
+ADD CONSTRAINT FK_EXP FOREIGN KEY(person_no)
+REFERENCES PERSONALINFO(person_no);
+
+ALTER TABLE EDUCATION
+ADD CONSTRAINT FK_EDU FOREIGN KEY(person_no)
+REFERENCES PERSONALINFO(person_no);
+
+ALTER TABLE ACTIVITIES
+ADD CONSTRAINT FK_ACT FOREIGN KEY(person_no)
+REFERENCES PERSONALINFO(person_no);
+
+ALTER TABLE SKILLS
+ADD CONSTRAINT FK_SKILL FOREIGN KEY(person_no)
+REFERENCES PERSONALINFO(person_no);
+
+ALTER TABLE WORKS
+ADD CONSTRAINT FK_WORK FOREIGN KEY(person_no)
+REFERENCES PERSONALINFO(person_no);

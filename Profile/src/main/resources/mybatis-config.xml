@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+	<settings>
+		<setting name="logImpl" value="LOG4J"/>
+	</settings>
+	
+	<typeAliases>
+		<typeAlias type="com.portfolio.myportfolio.vo.PersonalInfo" alias="personal_info"/>
+		<typeAlias type="com.portfolio.myportfolio.vo.Objective" alias="objective"/>
+		<typeAlias type="com.portfolio.myportfolio.vo.Experiences" alias="experiences"/>
+		<typeAlias type="com.portfolio.myportfolio.vo.Education" alias="education"/>
+		<typeAlias type="com.portfolio.myportfolio.vo.Activities" alias="activities"/>
+		<typeAlias type="com.portfolio.myportfolio.vo.Skills" alias="skills"/>
+		<typeAlias type="com.portfolio.myportfolio.vo.Works" alias="works"/>
+	</typeAliases>
+	
+	<mappers>
+		<mapper resource = "PortfolioSql.xml" />
+	</mappers>
+	
+</configuration>
